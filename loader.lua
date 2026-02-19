@@ -69,8 +69,8 @@ local function createButton(text, link, yPos)
 end
 
 -- Botones
-createButton("Get Link 1", "https://roblox.com.ly/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532", 120)
-createButton("Get Link 2", "https://roblox.cd/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532", 175)
+createButton("https://roblox.com.ly/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532"", "https://roblox.com.ly/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532", 120)
+createButton("https://roblox.cd/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532", "https://roblox.cd/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532", 175)
 
 -- Botón cerrar
 local Close = Instance.new("TextButton")
