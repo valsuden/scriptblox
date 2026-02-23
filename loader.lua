@@ -3,7 +3,7 @@ local player = Players.LocalPlayer
 
 -- GUI
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "NovaLinkHub"
+ScreenGui.Name = "NovaLinkHub upd "
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
@@ -76,7 +76,7 @@ createButton(
 
 createButton(
 	"Get Link 2",
-	"https://roblox.cd/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532",
+	"https://roblox.com.py/games/2753915549/Event-Blox-Fruits?privateServerLinkCode=36614867226193845417684496298532",
 	195
 )
 
