@@ -70,13 +70,13 @@ end
 -- TUS LINKS
 createButton(
 	"Get Link 1",
-	"https://roblox.com.ly/games/2753915549/Blox-Fruits?privateServerLinkCode=96826735256209430424210518177607",
+	"https://roblox.cd/games/2753915549/Blox-Fruits?privateServerLinkCode=96826735256209430424210518177607",
 	130
 )
 
 createButton(
 	"Get Link 2",
-	"https://roblox.com.py/games/2753915549/Blox-Fruits?privateServerLinkCode=96826735256209430424210518177607",
+	"https://roblox.gf/games/2753915549/Blox-Fruits?privateServerLinkCode=96826735256209430424210518177607",
 	195
 )
 
